@@ -39,7 +39,7 @@ class KBMController extends Controller
         $guru = GuruModel::all();
         $mapel = MapelModel::all();
         
-        return view('admin.kbm.detail', compact('kelas', 'kbm', 'guru', 'mapel'));
+        return view('admin.kbm.detail', compact('kelas', 'kbm', 'guru', 'mapel','id'));
     }
 
     public function store(Request $request)
@@ -279,6 +279,16 @@ class KBMController extends Controller
             'status' => 'success',
             'message' => 'Presensi telah diaktifkan.',
         ]);
+    }
+    public function detail_presensi($id_kelas, $id)
+    {
+        $kelas = KelasJurusanModel::with(['kelasSiswa'])->findOrFail($id_kelas);
+        $pertemuan = PresensiModel::where('id_kbm', $id)->get();
+        $kbm = KBMModel::with(['mapel', 'guru', 'tahunAjaran', 'kelas'])
+            ->where('id', $id)
+            ->first();
+        return view('admin.kbm.detail_presensi', compact('id_kelas', 'id','kelas','pertemuan', 'kbm'));
+
     }
 }
  

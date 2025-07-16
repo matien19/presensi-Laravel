@@ -60,10 +60,10 @@
                             >
                                 <i class="nav-icon fas fa-edit"></i> Edit
                             </button>
-                            <button type="button" class="btn btn-danger btn-xs btn-hapus" data-id="{{ $item->nis }}" id="btn-hapus">
+                            <button type="button" class="btn btn-danger btn-xs btn-hapus" data-id="{{ $item->nis }}">
                                 <i class="nav-icon fas fa-trash"></i> Hapus
                             </button>                              
-                            <button type="button" class="btn btn-warning btn-xs btn-reset" data-id="{{ $item->nis }}" id="btn-reset">
+                            <button type="button" class="btn btn-warning btn-xs btn-reset" data-id="{{ $item->nis }}">
                                 <i class="nav-icon fas fa-sync"></i> Reset Password
                             </button>  
                           </center>
@@ -365,7 +365,8 @@
 
             });
 
-            $('.btn-hapus').on('click', function (e) {
+            // Use event delegation for dynamically generated buttons
+            $(document).on('click', '.btn-hapus', function (e) {
 
                 var button = $(this); 
                 var nis = button.data('id') 
@@ -514,7 +515,7 @@
                 });
             });
 
-               $('.btn-reset').on('click', function (e) {
+               $(document).on('click', '.btn-reset', function (e) {
                 var button = $(this);
                 var nip = button.data('id');
                 var url = "{{ route('a.siswa.reset_pw', ':id') }}".replace(':id', nip);

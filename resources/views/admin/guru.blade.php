@@ -340,7 +340,7 @@
 
             });
 
-            $('.btn-hapus').on('click', function (e) {
+            $(document).on('click', '.btn-hapus', function (e) {
 
                 var button = $(this); 
                 var nip = button.data('id') 
@@ -489,7 +489,7 @@
                 });
             });
 
-            $('.btn-reset').on('click', function (e) {
+            $(document).on('click', '.btn-reset', function (e) {
                 var button = $(this);
                 var nip = button.data('id');
                 var url = "{{ route('a.guru.reset_pw', ':id') }}".replace(':id', nip);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\KBMModel;
+use App\Models\KelasJurusanModel;
 use App\Models\LogPresensiModel;
 use App\Models\PeriodeModel;
 use App\Models\PresensiModel;
@@ -23,7 +24,7 @@ class GKBMController extends Controller
         ->orderBy('hari', 'asc')
         ->get();
 
-        return view('guru.kbm.kbm', compact('kbm','taAktif'));
+        return view('guru.kbm.kbm2', compact('kbm','taAktif'));
     }
 
     public function create(Request $request, string $id)
@@ -147,5 +148,16 @@ class GKBMController extends Controller
             'status' => 'success',
             'message' => 'Presensi telah diaktifkan.',
         ]);
+    }
+
+    public function detail_presensi($id)
+    {
+        // $kelas = KelasJurusanModel::with(['kelasSiswa'])->findOrFail($id_kelas);
+        $pertemuan = PresensiModel::where('id_kbm', $id)->get();
+        $kbm = KBMModel::with(['mapel', 'guru', 'tahunAjaran', 'kelas'])
+            ->where('id', $id)
+            ->first();
+        return view('guru.kbm.detail_presensi', compact('id','pertemuan', 'kbm'));
+
     }
 }

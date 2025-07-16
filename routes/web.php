@@ -73,6 +73,7 @@ Route::group(['middleware' =>'auth:admin'],function () {
 
     Route::get('/kbm', [KBMController::class, 'index'])->name('a.kbm');
     Route::get('/kbm/detail/{id}', [KBMController::class, 'detail'])->name('a.kbm.detail');
+    Route::get('/kbm/detail/presensi/{id_kelas}/{id}', [KBMController::class, 'detail_presensi'])->name('a.kbm.detail.presensi');
     Route::post('/kbm/add', [KBMController::class, 'store'])->name('a.kbm.add');
     Route::post('/kbm/edit/{id}', [KBMController::class, 'update'])->name('a.kbm.edit');
     Route::delete('/kbm/delete/{id}', [KBMController::class, 'destroy'])->name('a.kbm.delete');
@@ -96,6 +97,7 @@ Route::group(['middleware' =>'auth:guru'],function () {
 
     Route::get('/guru/kbm', [GKBMController::class, 'index'])->name('g.kbm');
     Route::get('/guru/kbm/create/presensi/{id}', [GKBMController::class, 'create'])->name('g.kbm.create');
+    Route::get('/guru/kbm/detail/presensi/{id}', [GKBMController::class, 'detail_presensi'])->name('g.kbm.detail.presensi');
     Route::post('/guru/kbm/create/presensi', [GKBMController::class, 'store_presensi'])->name('g.kbm.create.presensi');
     Route::get('/guru/kbm/presensi/{id}', [GKBMController::class, 'presensi'])->name('g.kbm.presensi');
     Route::post('/guru/kbm/presensi/update', [KBMController::class, 'update_presensi'])->name('g.kbm.presensi.update');

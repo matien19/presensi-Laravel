@@ -80,9 +80,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-flex flex-wrap align-items-center gap-1 btn-group-sm" role="group" style="gap: 0.5rem;">
-                                                                    <button type="button" class="btn btn-primary btn-xs btn-presensi open-modal" data-url="{{ route('a.kbm.create', $item['id']) }}">
+                                                                    <a href="/kbm/detail/presensi/{{ $id }}/{{ $item['id'] }}"  class="btn btn-primary btn-xs btn-presensi open-modal" >
                                                                         <i class="nav-icon fas fa-qrcode"></i> Presensi
-                                                                    </button>
+                                                                    </a>
                                                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal-default"
                                                                         data-id="{{ $item['id'] }}"
                                                                         data-guru="{{ $item['guru']['nip'] }}"
@@ -102,6 +102,12 @@
                                                     @endforeach
                                                 </ul>
                                             @else
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <h5 class="mb-0">Jadwal KBM Hari {{ $day }}</h5>
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal-default" data-hari="{{ $num }}">
+                                                        <i class="nav-icon fas fa-plus"></i> Tambah KBM
+                                                    </button>
+                                                </div>
                                                 <div class="alert alert-info mb-0">Tidak ada data KBM untuk hari {{ $day }}.</div>
                                             @endif
                                         </div>
@@ -196,7 +202,7 @@
     </div>
     <!-- /.modal -->
     <!-- Modal Dinamis -->
-    <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="modalShowLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="modalShowLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
@@ -214,7 +220,7 @@
                 <div class="modal-body" id="mdBd" style="display: none;"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')
@@ -414,7 +420,7 @@
     });
     
     </script>
-    <script>
+    {{-- <script>
     $(document).on("click", ".open-modal", function () {
         $("#mdBd").hide();
         $("#mdLd").show();
@@ -436,5 +442,5 @@
             }
         });
     });
-    </script>
+    </script> --}}
 @endpush

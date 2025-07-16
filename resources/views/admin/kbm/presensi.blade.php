@@ -11,6 +11,8 @@
                         <h5 class="text-center"><b>Presensi Kegiatan Belajar Mengajar</b></h5>
                     </div>
                 </div>
+                 <a href="/kbm/detail/presensi/{{$kbm->id_kls_jurusan}}/{{$kbm->id}}" class="btn btn-warning btn-sm">
+                    <i class="nav-icon fas fa-arrow-left"></i> Kembali </a>
                 <div class="row mt-3">
                     <div class="col-lg-6">
                         <table class="table table-bordered table-sm">  
